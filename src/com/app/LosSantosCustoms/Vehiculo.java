@@ -32,7 +32,7 @@ public class Vehiculo {
 		consultarVehiculo();
 	}
 	
-	//-- CRUD de Establecimiento
+	//-- CRUD de Establecimientooo
 	public static void insertarVehiculo(String ID, String Marca, String Modelo, String Color, String Matricula, Integer N_plazas, Integer Potencia, Integer Anho, Double Precio) {
 		
 		//Modifico el código de insertar dos artículos para uno específico
