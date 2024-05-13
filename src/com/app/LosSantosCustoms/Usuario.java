@@ -99,24 +99,13 @@ public class Usuario {
 			      }
 	}
 	
-	public static void eliminarUsuario() {
-		try {
-			String url = "jdbc:mysql://localhost:3306/lossantoscustoms";
-	        Connection con = DriverManager.getConnection(url,"root","");
-	        String SQL = "DELETE FROM Usuario WHERE ID > 3 ";
-			PreparedStatement pstmt = con.prepareStatement(SQL);
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-           e.printStackTrace();
-		}
-	}
 	
 	
 	public static void eliminarTablaUsuario() {
         try {
             String url = "jdbc:mysql://localhost:3306/lossantoscustoms";
             Connection con = DriverManager.getConnection(url,"root","");
-            String SQL = "DROP TABLE IF EXISTS Usuario";
+            String SQL = "DELETE FROM Usuario";
             PreparedStatement pstmt = con.prepareStatement(SQL);
             pstmt.executeUpdate();
         } catch (Exception e) {
@@ -129,7 +118,7 @@ public class Usuario {
         try {
             String url = "jdbc:mysql://localhost:3306/lossantoscustoms";
             Connection con = DriverManager.getConnection(url,"root","");
-            String SQL = "DELETE FROM Usuario WHERE ID =" + idUsuario;
+            String SQL = "DELETE FROM Vehiculo WHERE ID = '" + idUsuario+"'";
             PreparedStatement pstmt = con.prepareStatement(SQL);
             pstmt.executeUpdate();
         } catch (Exception e) {

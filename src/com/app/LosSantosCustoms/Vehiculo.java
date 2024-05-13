@@ -26,7 +26,7 @@ public class Vehiculo {
 		//consultarVehiculo();
 		
 		//Eliminar la tabla insertada
-		eliminarVehiculo();
+		//eliminarVehiculo();
 		
 		//Cuarta consulta de la BD.
 		consultarVehiculo();
@@ -104,23 +104,13 @@ public class Vehiculo {
 			      }
 	}
 	
-	public static void eliminarVehiculo() {
-		try {
-			String url = "jdbc:mysql://localhost:3306/lossantoscustoms";
-	        Connection con = DriverManager.getConnection(url,"root","");
-	        String SQL = "DELETE FROM Vehiculo WHERE ID = 'V004' ";
-			PreparedStatement pstmt = con.prepareStatement(SQL);
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-           e.printStackTrace();
-		}
-	}
+
 	
 	public static void eliminarTablaVehiculo() {
         try {
             String url = "jdbc:mysql://localhost:3306/lossantoscustoms";
             Connection con = DriverManager.getConnection(url,"root","");
-            String SQL = "DROP TABLE IF EXISTS Vehiculo";
+            String SQL = "DELETE FROM Vehiculo";
             PreparedStatement pstmt = con.prepareStatement(SQL);
             pstmt.executeUpdate();
         } catch (Exception e) {
@@ -133,7 +123,7 @@ public class Vehiculo {
         try {
             String url = "jdbc:mysql://localhost:3306/lossantoscustoms";
             Connection con = DriverManager.getConnection(url,"root","");
-            String SQL = "DELETE FROM Vehiculo WHERE ID =" + idVehiculo;
+            String SQL = "DELETE FROM Vehiculo WHERE ID = '" + idVehiculo+"'";
             PreparedStatement pstmt = con.prepareStatement(SQL);
             pstmt.executeUpdate();
         } catch (Exception e) {

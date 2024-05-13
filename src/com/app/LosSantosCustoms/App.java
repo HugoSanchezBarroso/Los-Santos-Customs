@@ -20,10 +20,9 @@ public class App {
             System.out.println("------------------------------------");
             System.out.println("1. Insertar uno o varios registros.");
             System.out.println("2. Mostrar todos los registros.");
-            System.out.println("3. Mostrar uno o varios registros.");
-            System.out.println("4. Eliminar una tabla.");
-            System.out.println("5. Eliminar un resgistro.");
-            System.out.println("6. Salir");
+            System.out.println("3. Eliminar una tabla.");
+            System.out.println("4. Eliminar un resgistro.");
+            System.out.println("5. Salir");
             System.out.println("------------------------------------");
             System.out.println("");
 
@@ -32,16 +31,16 @@ public class App {
 
             switch (res) {
                 case 1:
-                    insertarRegistros();
+                    insertarRegistros(sc);
                     break;
                 case 2:
-                    mostrarRegistros();
+                    mostrarRegistros(sc);
                     break;
                 case 3:
-                    eliminarTabla();
+                    eliminarTabla(sc);
                     break;
                 case 4:
-                    eliminarRegistro();
+                    eliminarRegistro(sc);
                     break;
                 case 5:
                     System.out.println("Saliendo...");
@@ -52,16 +51,16 @@ public class App {
             }
         }
         sc.close();
-
     }
+    
+    
 
-    private static void insertarRegistros() {
-        Scanner sc = new Scanner(System.in);
+    private static void insertarRegistros(Scanner sc) {
         System.out.println("¿En qué tabla desea introducir nuevos registros?");
-        String nomTab = sc.next();
+        String nombreTabla = sc.next();
         try {
-            switch (nomTab) {
-                case "Establecimiento":
+            switch (nombreTabla.toLowerCase()) {
+                case "establecimiento":
                     System.out.println("¿Cuántos registros debe introducir?");
                     int numDoc = sc.nextInt();
                     for (int i = 0; i < numDoc; i++) {
@@ -81,7 +80,7 @@ public class App {
                         Establecimiento.insertarEstablecimiento(ID, Nombre, Direccion, Ciudad, Horario, ID_Vehiculo);
                     }
                     break;
-                case "Usuario":
+                case "usuario":
                     System.out.println("¿Cuántos registros debe introducir?");
                     int numDocUser = sc.nextInt();
                     for (int i = 0; i < numDocUser; i++) {
@@ -95,7 +94,7 @@ public class App {
                         Usuario.insertarUsuario(ID, Nombre, Apellidos);
                     }
                     break;
-                case "Vehiculo":
+                case "vehiculo":
                     System.out.println("¿Cuántos registros debe introducir?");
                     int numDocVeh = sc.nextInt();
                     for (int i = 0; i < numDocVeh; i++) {
@@ -129,13 +128,11 @@ public class App {
             System.err.println("Error al insertar registros. ") ;
             System.err.println(e.getMessage());
         }
-        sc.close();
-
     }
+    
 
 
-    private static void mostrarRegistros() {
-        Scanner sc = new Scanner(System.in);
+    private static void mostrarRegistros(Scanner sc) {
         System.out.println("Has elegido mostrar todos los registros de una tabla.");
         System.out.println("¿Qué tabla desea mostrar?");
         String nombreTabla = sc.next();
@@ -162,12 +159,10 @@ public class App {
             System.err.println("Error al mostrar registros. ") ;
             System.err.println(e.getMessage());
         }
-        sc.close();
     }
 
 
-    private static void eliminarTabla() {
-        Scanner sc = new Scanner(System.in);
+    private static void eliminarTabla(Scanner sc) {
         System.out.println("¿Qué tabla desea eliminar?");
         String nombreTabla = sc.next();
 
@@ -193,13 +188,11 @@ public class App {
             System.err.println("Error al eliminar tabla. ") ;
             System.err.println(e.getMessage());
         }
-        sc.close();
-
     }
 
 
-    private static void eliminarRegistro() {
-        Scanner sc = new Scanner(System.in);
+    
+    private static void eliminarRegistro(Scanner sc) {
         System.out.println("¿En qué tabla desea eliminar un registro?");
         String nombreTabla = sc.next();
         System.out.println("¿Cuál es el ID del registro que desea eliminar?");
@@ -221,13 +214,12 @@ public class App {
                     break;
                 default:
                     System.out.println("Tabla no existente.");
-                    break;
-            }
-        } catch (Exception e) {
+                    break;}
+            }catch (Exception e){
             System.err.println("Error al eliminar registro. ") ;
             System.err.println(e.getMessage());
         }
-        sc.close();
-
-    }
+    } 
+    
+    
 }

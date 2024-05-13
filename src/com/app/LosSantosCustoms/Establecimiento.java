@@ -119,7 +119,7 @@ public static void consultarEstablecimiento () {
         try {
             String url = "jdbc:mysql://localhost:3306/lossantoscustoms";
             Connection con = DriverManager.getConnection(url,"root","");
-            String SQL = "DELETE FROM Establecimiento WHERE ID =" + idEstablecimiento;
+            String SQL = "DELETE FROM Vehiculo WHERE ID = '" + idEstablecimiento+"'";
             PreparedStatement pstmt = con.prepareStatement(SQL);
             pstmt.executeUpdate();
         } catch (Exception e) {
