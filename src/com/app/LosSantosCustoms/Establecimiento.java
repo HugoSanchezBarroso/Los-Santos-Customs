@@ -14,7 +14,7 @@ public class Establecimiento {
 		consultarEstablecimiento();
 		
 		//Insertar nuevo registro a la tabla Establecimiento.
-		insertarEstablecimiento("E004", "Gasoil City", "Calle Sánchez Cotán s/n", "Kuala Lumpur", "Viernes a Domingo 10am-22pm", "V004");
+		insertarEstablecimiento("Gasoil City", "Calle Sánchez Cotán s/n", "Kuala Lumpur", "Viernes a Domingo 10am-22pm");
 		
 		//Segunda consulta a la BD.
 		consultarEstablecimiento();
@@ -33,7 +33,7 @@ public class Establecimiento {
 	}
 	
 	//-- CRUD de Establecimiento
-	public static void insertarEstablecimiento(String ID, String Nombre, String Direccion, String Ciudad, String Horario, String ID_vehiculo) {
+	public static void insertarEstablecimiento(String Nombre, String Direccion, String Ciudad, String Horario) {
 		
 		//Modifico el código de insertar dos artículos para uno específico
 		//pasado por argumentos.
@@ -42,7 +42,7 @@ public class Establecimiento {
 			String url = "jdbc:mysql://localhost:3306/lossantoscustoms";
 			Connection conn = DriverManager.getConnection(url, "root", "");
 			Statement st = conn.createStatement();
-			st.executeUpdate("INSERT INTO Establecimiento " + "VALUES ('"+ID+"', '"+Nombre+"',  '"+Direccion+"', '"+Ciudad+"', '"+Horario+"', '"+ID_vehiculo+"')");
+			st.executeUpdate("INSERT INTO Establecimiento (Nombre, Direccion, Ciudad, Horario)" + "VALUES ('"+Nombre+"',  '"+Direccion+"', '"+Ciudad+"', '"+Horario+"')");
 			conn.close();
 		}catch (Exception e) {
 			System.err.println("Got an exception! ");
@@ -69,9 +69,8 @@ public static void consultarEstablecimiento () {
 				String Direccion = resultset.getString("Direccion");
 				String Ciudad = resultset.getString("Ciudad");
 				String Horario = resultset.getString("Horario");
-				String ID_vehiculo = resultset.getString("ID_vehiculo");
 
-				System.out.println(ID + "\t" + Nombre + "\t" + Direccion + "\t" + Ciudad + "\t" + Horario + "\t" + ID_vehiculo);
+				System.out.println(ID + "\t" + Nombre + "\t" + Direccion + "\t" + Ciudad + "\t" + Horario);
 			}
 			
 			// Por Seguridad, cerramos la conexión
@@ -106,7 +105,7 @@ public static void consultarEstablecimiento () {
         try {
             String url = "jdbc:mysql://localhost:3306/lossantoscustoms";
             Connection con = DriverManager.getConnection(url,"root","");
-            String SQL = "DROP TABLE IF EXISTS Establecimiento";
+            String SQL = "DELETE FROM Establecimiento";
             PreparedStatement pstmt = con.prepareStatement(SQL);
             pstmt.executeUpdate();
         } catch (Exception e) {

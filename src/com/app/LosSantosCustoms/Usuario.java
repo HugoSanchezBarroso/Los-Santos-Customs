@@ -37,13 +37,13 @@ public class Usuario {
 	
 	//-- CRUD de Usuario
 	
-	public static void insertarUsuario (String ID, String Nombre, String Apellidos) {
+	public static void insertarUsuario (String Nombre, String Apellidos, String Correo, String Contrasenia) {
 		//Insert
 		try {
 			String url = "jdbc:mysql://localhost:3306/lossantoscustoms";
 			Connection conn = DriverManager.getConnection(url, "root", "");
 			Statement st = conn.createStatement();
-			st.executeUpdate("INSERT INTO Usuario " + "VALUES ('"+ID+"','"+Nombre+"', '"+Apellidos+"')");
+			st.executeUpdate("INSERT INTO Usuario (Nombre, Apellidos, Correo, Contrasenia)" + "VALUES ('"+Nombre+"', '"+Apellidos+"', '"+Correo+"', '"+Contrasenia+"')");
 			conn.close();
 		}catch (Exception e) {
 			System.err.println("No se ha podido insertar los datos. ");
@@ -68,7 +68,10 @@ public class Usuario {
 				String ID = resultset.getString("ID");
 				String Nombre = resultset.getString("Nombre");
 				String Apellidos = resultset.getString("Apellidos");
-				System.out.println(ID + "\t" + Nombre + "\t" + Apellidos);
+				String Correo = resultset.getString("Correo");
+				String Contrasenia = resultset.getString("Contrasenia");
+				String Permiso = resultset.getString("Permiso");
+				System.out.println(ID + "\t" + Nombre + "\t" + Apellidos + "\t" + Correo + "\t" + Contrasenia + "\t" + Permiso);
 			}
 			
 			// Por Seguridad, cerramos la conexión
@@ -118,7 +121,7 @@ public class Usuario {
         try {
             String url = "jdbc:mysql://localhost:3306/lossantoscustoms";
             Connection con = DriverManager.getConnection(url,"root","");
-            String SQL = "DELETE FROM Vehiculo WHERE ID = '" + idUsuario+"'";
+            String SQL = "DELETE FROM Usuario WHERE ID = '" + idUsuario+"'";
             PreparedStatement pstmt = con.prepareStatement(SQL);
             pstmt.executeUpdate();
         } catch (Exception e) {

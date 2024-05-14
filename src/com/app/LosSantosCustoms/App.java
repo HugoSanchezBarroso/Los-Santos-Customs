@@ -15,15 +15,15 @@ public class App {
 
         while (bucle) {
             System.out.println("");
-            System.out.println("------------------------------------");
-            System.out.println("                MENÚ                ");
-            System.out.println("------------------------------------");
+            System.out.println("----------------------------------------------");
+            System.out.println("                     MENÚ                ");
+            System.out.println("----------------------------------------------");
             System.out.println("1. Insertar uno o varios registros.");
             System.out.println("2. Mostrar todos los registros.");
-            System.out.println("3. Eliminar una tabla.");
+            System.out.println("3. Eliminar todos los registros de una tabla.");
             System.out.println("4. Eliminar un resgistro.");
             System.out.println("5. Salir");
-            System.out.println("------------------------------------");
+            System.out.println("----------------------------------------------");
             System.out.println("");
 
             System.out.println("Introduzca una opción: ");
@@ -65,8 +65,6 @@ public class App {
                     int numDoc = sc.nextInt();
                     for (int i = 0; i < numDoc; i++) {
                         System.out.println("Registro n." + (i + 1));
-                        System.out.println("Introduzca el ID: ");
-                        String ID = sc.next();
                         System.out.println("Introduzca el Nombre: ");
                         String Nombre = sc.next();
                         System.out.println("Introduzca la Dirección: ");
@@ -75,9 +73,7 @@ public class App {
                         String Ciudad = sc.next();
                         System.out.println("Introduzca el Horario: ");
                         String Horario = sc.next();
-                        System.out.println("Introduzca el ID_Vehiculo: ");
-                        String ID_Vehiculo = sc.next();
-                        Establecimiento.insertarEstablecimiento(ID, Nombre, Direccion, Ciudad, Horario, ID_Vehiculo);
+                        Establecimiento.insertarEstablecimiento(Nombre, Direccion, Ciudad, Horario);
                     }
                     break;
                 case "usuario":
@@ -85,13 +81,15 @@ public class App {
                     int numDocUser = sc.nextInt();
                     for (int i = 0; i < numDocUser; i++) {
                         System.out.println("Registro n." + (i + 1));
-                        System.out.println("Introduzca el ID: ");
-                        String ID = sc.next();
                         System.out.println("Introduzca el Nombre: ");
                         String Nombre = sc.next();
                         System.out.println("Introduzca los Apellidos: ");
                         String Apellidos = sc.next();
-                        Usuario.insertarUsuario(ID, Nombre, Apellidos);
+                        System.out.println("Introduzca el Correo: ");
+                        String Correo = sc.next();
+                        System.out.println("Introduzca la Contraseña: ");
+                        String Contrasenia = sc.next();
+                        Usuario.insertarUsuario(Nombre, Apellidos, Correo, Contrasenia);
                     }
                     break;
                 case "vehiculo":
@@ -99,8 +97,6 @@ public class App {
                     int numDocVeh = sc.nextInt();
                     for (int i = 0; i < numDocVeh; i++) {
                         System.out.println("Registro n." + (i + 1));
-                        System.out.println("Introduzca el ID: ");
-                        String ID = sc.next();
                         System.out.println("Introduzca la Marca: ");
                         String Marca = sc.next();
                         System.out.println("Introduzca el Modelo: ");
@@ -117,7 +113,7 @@ public class App {
                         Integer Anho = sc.nextInt();
                         System.out.println("Introduzca el Precio: ");
                         Double Precio = sc.nextDouble();
-                        Vehiculo.insertarVehiculo(ID, Marca, Modelo, Color, Matricula, N_plazas, Potencia, Anho, Precio);
+                        Vehiculo.insertarVehiculo(Marca, Modelo, Color, Matricula, N_plazas, Potencia, Anho, Precio);
                     }
                     break;
                 default:
@@ -169,15 +165,15 @@ public class App {
         try {
             switch (nombreTabla.toLowerCase()) {
                 case "usuario":
-                    System.out.println("Eliminando tabla Usuario...");
+                    System.out.println("Eliminando todos los usuarios...");
                     Usuario.eliminarTablaUsuario();
                     break;
                 case "vehiculo":
-                    System.out.println("Eliminando tabla Vehiculo...");
+                    System.out.println("Eliminando todos los vehiculos...");
                     Vehiculo.eliminarTablaVehiculo();
                     break;
                 case "establecimiento":
-                    System.out.println("Eliminando tabla Establecimiento...");
+                    System.out.println("Eliminando todos los establecimientos...");
                     Establecimiento.eliminarTablaEstablecimiento();
                     break;
                 default:
