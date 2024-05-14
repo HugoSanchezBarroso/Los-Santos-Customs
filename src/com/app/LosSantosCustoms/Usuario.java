@@ -43,7 +43,7 @@ public class Usuario {
 			String url = "jdbc:mysql://localhost:3306/lossantoscustoms";
 			Connection conn = DriverManager.getConnection(url, "root", "");
 			Statement st = conn.createStatement();
-			st.executeUpdate("INSERT INTO Usuario (Nombre, Apellidos, Correo, Contrasenia)" + "VALUES ('"+Nombre+"', '"+Apellidos+"', '"+Correo+"', '"+Contrasenia+"')");
+			st.executeUpdate("INSERT INTO Usuario (Nombre, Apellidos, Correo, Contrasenia) " + "VALUES ('"+Nombre+"', '"+Apellidos+"', '"+Correo+"', '"+Contrasenia+"')");
 			conn.close();
 		}catch (Exception e) {
 			System.err.println("No se ha podido insertar los datos. ");

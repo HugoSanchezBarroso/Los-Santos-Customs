@@ -42,7 +42,7 @@ public class Vehiculo {
 			String url = "jdbc:mysql://localhost:3306/lossantoscustoms";
 			Connection conn = DriverManager.getConnection(url, "root", "");
 			Statement st = conn.createStatement();
-			st.executeUpdate("INSERT INTO Vehiculo (Marca, Modelo, Color, Matricula, N_plazas, Potencia, Anho, Precio)" + "VALUES ('"+Marca+"',  '"+Modelo+"', '"+Color+"', '"+Matricula+"', '"+N_plazas+"', '"+Potencia+"', '"+Anho+"', '"+Precio+"')");
+			st.executeUpdate("INSERT INTO Vehiculo (Marca, Modelo, Color, Matricula, N_plazas, Potencia, Anho, Precio) " + "VALUES ('"+Marca+"',  '"+Modelo+"', '"+Color+"', '"+Matricula+"', '"+N_plazas+"', '"+Potencia+"', '"+Anho+"', '"+Precio+"')");
 			conn.close();
 		}catch (Exception e) {
 			System.err.println("Got an exception! ");

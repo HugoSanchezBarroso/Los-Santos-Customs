@@ -42,7 +42,7 @@ public class Establecimiento {
 			String url = "jdbc:mysql://localhost:3306/lossantoscustoms";
 			Connection conn = DriverManager.getConnection(url, "root", "");
 			Statement st = conn.createStatement();
-			st.executeUpdate("INSERT INTO Establecimiento (Nombre, Direccion, Ciudad, Horario)" + "VALUES ('"+Nombre+"',  '"+Direccion+"', '"+Ciudad+"', '"+Horario+"')");
+			st.executeUpdate("INSERT INTO Establecimiento (Nombre, Direccion, Ciudad, Horario) " + "VALUES ('"+Nombre+"',  '"+Direccion+"', '"+Ciudad+"', '"+Horario+"')");
 			conn.close();
 		}catch (Exception e) {
 			System.err.println("Got an exception! ");

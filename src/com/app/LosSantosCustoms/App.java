@@ -92,6 +92,34 @@ public class App {
                         Usuario.insertarUsuario(Nombre, Apellidos, Correo, Contrasenia);
                     }
                     break;
+                case "inventario":
+                    System.out.println("¿Cuántos registros debe introducir?");
+                    int numDocInve = sc.nextInt();
+                    for (int i = 0; i < numDocInve; i++) {
+                    	System.out.println("Registro n." + (i + 1));
+                        System.out.println("Introduzca el ID del Establecimiento: ");
+                        Integer ID_establecimiento = sc.nextInt();
+                        System.out.println("Introduzca el ID del Vehiculo: ");
+                        Integer ID_vehiculo = sc.nextInt();
+                        Inventario.insertarInventario(ID_establecimiento, ID_vehiculo);
+                    }
+                    break;
+                case "venta":
+                    System.out.println("¿Cuántos registros debe introducir?");
+                    int numDocVent = sc.nextInt();
+                    for (int i = 0; i < numDocVent; i++) {
+                    	System.out.println("Registro n." + (i + 1));
+                        System.out.println("Introduzca el ID del Vahiculo: ");
+                        Integer ID_vehiculo = sc.nextInt();
+                        System.out.println("Introduzca el ID del Cliente: ");
+                        Integer ID_cliente = sc.nextInt();
+                        System.out.println("Introduzca el ID del Trabajador: ");
+                        Integer ID_trabajador = sc.nextInt();
+                        System.out.println("Introduzca la fecha: ");
+                        String fecha_venta = sc.next();
+                        Venta.insertarVenta(ID_vehiculo, ID_cliente, ID_trabajador, fecha_venta);
+                    }
+                    break;
                 case "vehiculo":
                     System.out.println("¿Cuántos registros debe introducir?");
                     int numDocVeh = sc.nextInt();
@@ -147,6 +175,14 @@ public class App {
                     System.out.println("Mostrando todos los registros de Establecimiento:");
                     Establecimiento.consultarEstablecimiento();
                     break;
+                case "inventario":
+                    System.out.println("Mostrando todos los registros de Inventario:");
+                    Inventario.consultarInventario();
+                    break;
+                case "venta":
+                    System.out.println("Mostrando todos los registros de Venta:");
+                    Venta.consultarVenta();
+                    break;
                 default:
                     System.out.println("Tabla no existente.");
                     break;
@@ -159,7 +195,7 @@ public class App {
 
 
     private static void eliminarTabla(Scanner sc) {
-        System.out.println("¿Qué tabla desea eliminar?");
+        System.out.println("¿Qué tabla desea borrar todos los registros?");
         String nombreTabla = sc.next();
 
         try {
@@ -167,6 +203,14 @@ public class App {
                 case "usuario":
                     System.out.println("Eliminando todos los usuarios...");
                     Usuario.eliminarTablaUsuario();
+                    break;
+                case "inventario":
+                    System.out.println("Eliminando todo el inventario...");
+                    Inventario.eliminarTablaInventario();
+                    break;
+                case "venta":
+                    System.out.println("Eliminando todas las ventas...");
+                    Venta.eliminarTablaVenta();
                     break;
                 case "vehiculo":
                     System.out.println("Eliminando todos los vehiculos...");
@@ -199,6 +243,16 @@ public class App {
                 case "usuario":
                     System.out.println("Eliminando Usuario con id: " +id + "...");
                     Usuario.eliminarUsuario(id);
+                    break;
+                case "inventario":
+                    System.out.println("¿Cuál es el Vehiculo_ID del registro que desea eliminar?");
+                    String idd = sc.next();
+                    System.out.println("Eliminando Usuario con id: " +id +" " +idd+ "...");
+                    Inventario.eliminarInventario(id, idd);
+                    break;
+                case "venta":
+                    System.out.println("Eliminando Usuario con id: " +id + "...");
+                    Venta.eliminarVenta(id);
                     break;
                 case "vehiculo":
                     System.out.println("Eliminando Vehiculo con id: " +id + "...");
