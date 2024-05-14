@@ -129,4 +129,60 @@ public class Usuario {
         }
     }
     
+    
+    
+    
+    
+    
+    
+    public static String consultarPermisoUsuario(String correo, String contrasenia) {
+        String permiso = null;
+
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lossantoscustoms", "root", "");
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT Permiso FROM Usuario WHERE Correo = ? AND Contrasenia = ?")) {
+            preparedStatement.setString(1, correo);
+            preparedStatement.setString(2, contrasenia);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    permiso = resultSet.getString("Permiso");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la conexión de la base de datos.");
+            e.printStackTrace();
+        }
+
+        return permiso;
+    }
+    
+    
+    public static void buscarVehiculosPorMarca(String marca) {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lossantoscustoms", "root", "");
+             Statement st = connection.createStatement();
+             ResultSet resultset = st.executeQuery("SELECT * FROM Vehiculo WHERE Marca='" + marca + "'")) {
+
+            while (resultset.next()) {
+                String ID = resultset.getString("ID");
+                String Modelo = resultset.getString("Modelo");
+                String Color = resultset.getString("Color");
+                String Matricula = resultset.getString("Matricula");
+                int N_plazas = resultset.getInt("N_plazas");
+                int Potencia = resultset.getInt("Potencia");
+                int Anho = resultset.getInt("Anho");
+                double Precio = resultset.getDouble("Precio");
+                System.out.println(ID + "\t" + Modelo + "\t" + Color + "\t" + Matricula + "\t" + N_plazas + "\t" + Potencia + "\t" + Anho + "\t" + Precio);
+            }
+
+            resultset.close();
+            st.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println("Error en la conexión de la base de datos.");
+            e.printStackTrace();
+        }
+    }
+
+
+    
 }

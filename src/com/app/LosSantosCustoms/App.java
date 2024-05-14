@@ -10,13 +10,86 @@ public class App {
 
     public static void main(String[] args) {
         System.out.println("¡Bienvenido a Los Santos Customs!");
-        boolean bucle = true;
+        boolean buclee = true;
         Scanner sc = new Scanner(System.in);
+
+        while (buclee) {
+            System.out.println("");
+            System.out.println("------------------------------------------------");
+            System.out.println("                      LOGIN                     ");
+            System.out.println("------------------------------------------------");
+            System.out.println("1. Login");
+            System.out.println("2. Registro");
+            System.out.println("3. Portal Empleado");
+            System.out.println("4. Salir");
+            System.out.println("------------------------------------------------");
+            System.out.println("");
+
+            System.out.println("Introduzca una opción: ");
+            int rest = sc.nextInt();
+
+            switch (rest) {
+                case 1:
+                	System.out.println("Ingrese su correo electrónico: ");
+                    String correo = sc.next();
+                    System.out.println("Ingrese su contraseña: ");
+                    String contrasenia = sc.next();
+                    
+                    String permiso = Usuario.consultarPermisoUsuario(correo, contrasenia);
+
+                    if (permiso != null) {
+                        if (permiso.equalsIgnoreCase("admin")) {
+                            // Si el usuario es administrador, mostrar el menú de administrador
+                            menuAdmin(sc);
+                        } else {
+                            // Si el usuario es limitado, mostrar el menú estándar
+                            menuUsuario(sc);
+                        }
+                    } else {
+                        System.out.println("Correo electrónico o contraseña incorrectos. Saliendo...");
+                    }
+                    
+                    break;
+                case 2:
+                	System.out.println(" ");
+                	System.out.println("Introduzca los datos de registro: ");
+                	System.out.println(" ");
+                	System.out.println("Introduzca el Nombre: ");
+                    String Nombre = sc.next();
+                    System.out.println("Introduzca los Apellidos: ");
+                    String Apellidos = sc.next();
+                    System.out.println("Introduzca el Correo: ");
+                    String Correo = sc.next();
+                    System.out.println("Introduzca la Contraseña: ");
+                    String Contrasenia = sc.next();
+                    Usuario.insertarUsuario(Nombre, Apellidos, Correo, Contrasenia);
+                    break;
+                    /*
+                     * Todo Caso 3
+                case 3:
+                    registroAdmin(sc);
+                    break;
+                    */
+                case 4:
+                    System.out.println("Saliendo...");
+                    buclee = false;
+                    break;
+                default:
+                    System.out.println("Opción incorrecta!");
+            }
+        }
+        sc.close();
+    }
+    
+    
+    public static void menuAdmin(Scanner sc){
+        System.out.println("");
+        boolean bucle = true;
 
         while (bucle) {
             System.out.println("");
             System.out.println("----------------------------------------------");
-            System.out.println("                     MENÚ                ");
+            System.out.println("                 MENÚ  ADMIN                  ");
             System.out.println("----------------------------------------------");
             System.out.println("1. Insertar uno o varios registros.");
             System.out.println("2. Mostrar todos los registros.");
@@ -50,8 +123,49 @@ public class App {
                     System.out.println("Opción incorrecta!");
             }
         }
-        sc.close();
     }
+    
+    
+    public static void menuUsuario(Scanner sc){
+        System.out.println("");
+        boolean bucle = true;
+
+        while (bucle) {
+            System.out.println("");
+            System.out.println("----------------------------------------------");
+            System.out.println("               MENÚ  USUARIO                  ");
+            System.out.println("----------------------------------------------");
+            System.out.println("1. Buscar Vehiculo por Marca.");
+            System.out.println("2. Mostrar todos los registros.");
+            System.out.println("3. Salir");
+            System.out.println("----------------------------------------------");
+            System.out.println("");
+
+            System.out.println("Introduzca una opción: ");
+            int res = sc.nextInt();
+
+            switch (res) {
+                case 1:
+                	System.out.println("");
+                	System.out.println("Ingrese la marca del vehículo a buscar:");
+                	System.out.println("");
+                    String marca = sc.next();
+                    Usuario.buscarVehiculosPorMarca(marca);;
+                    break;
+                case 2:
+                    mostrarRegistros(sc);
+                    break;
+                
+                case 3:
+                    System.out.println("Saliendo...");
+                    bucle = false;
+                    break;
+                default:
+                    System.out.println("Opción incorrecta!");
+            }
+        }
+    }
+    
     
     
 
@@ -270,6 +384,7 @@ public class App {
             System.err.println(e.getMessage());
         }
     } 
+    
     
     
 }
